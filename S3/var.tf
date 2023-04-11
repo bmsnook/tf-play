@@ -1,5 +1,5 @@
 variable "bucket_name" {}
 
-variable "acl_value" {
+variable "bucket_acl_value" {
     default = "private"
 }

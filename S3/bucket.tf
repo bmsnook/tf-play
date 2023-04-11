@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "demos3" {
+resource "aws_s3_bucket_acl" "demos3" {
     bucket = "${var.bucket_name}" 
-    acl = "${var.acl_value}"   
+    acl = "${var.bucket_acl_value}"
 }
