@@ -1,4 +1,20 @@
-resource "aws_s3_bucket_acl" "demos3" {
-    bucket = "${var.bucket_name}" 
-    acl = "${var.bucket_acl_value}"
+resource "aws_s3_bucket" "tftest00" {
+  bucket = "${var.bucket_name}"
 }
+
+resource "aws_s3_bucket_ownership_controls" "tftest00" {
+  bucket = aws_s3_bucket.tftest00.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "tftest00" {
+  depends_on = [
+        aws_s3_bucket_ownership_controls.tftest00
+  ]
+
+  bucket = aws_s3_bucket.tftest00.id
+  acl = "${var.bucket_acl_value}"
+}
+
