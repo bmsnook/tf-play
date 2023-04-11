@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 module "s3" {
-    source = "<path-to-S3-folder>"
+    source = "./S3"
     #bucket name should be unique
     bucket_name = "bms-cc-test-tf-bucket00"
 }
