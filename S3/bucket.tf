@@ -1,5 +1,10 @@
 resource "aws_s3_bucket" "tftest00" {
   bucket = "${var.bucket_name}"
+  tags = {
+    name        = "Terraform Test Bucket"
+    env         = "dev"
+    intent      = "learn"
+  }
 }
 
 resource "aws_s3_bucket_ownership_controls" "tftest00" {
