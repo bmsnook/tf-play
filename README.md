@@ -1,6 +1,12 @@
 # tf-play: Terraform Play
 
-Sandbox to learn and play with Terraform
+Sandbox to learn and play with Terraform (to compare to a previous version)
+
+Based loosely on the example at
+
+https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest/examples/complete
+
+https://github.com/terraform-aws-modules/terraform-aws-s3-bucket
 
 Rather than hardcoding AWS account information in the files, I run the function "aws_env_tf" (defined below) to set environment variables that Terraform will read (I've seen conflicting accounts of whether Terraform picks up the "regular" AWS_ACCESS_KEY_ID, et al. variables in the absence of TF_VAR_\* variables.
 
@@ -31,5 +37,10 @@ aws_env_tf () {
 	export TF_VAR_region=$(aws configure get region --profile ${AWS_PROFILE}) 
 	echo "${AWS_PROFILE} environment variables exported to terraform"
 }
+```
+
+In order to create the `variables.tf` file required to define variables in my `main.tf`, I just downloaded the one from the Terraform git repo with 
+```
+curl -O https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-s3-bucket/master/variables.tf
 ```
 
